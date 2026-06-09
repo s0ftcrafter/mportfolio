@@ -1,0 +1,38 @@
+@use 'variables' as *;
+
+@mixin heading-style {
+  font-family: $font-heading;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
+
+@mixin tag {
+  display: inline-block;
+  padding: 0.2rem 0.5rem;
+  font-family: $font-heading;
+  font-size: 0.625rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  background: var(--surface);
+}
+
+@mixin card-icon {
+  display: grid;
+  place-items: center;
+  width: 1.75rem;
+  height: 1.75rem;
+  font-family: $font-heading;
+  font-size: 0.75rem;
+  font-weight: 800;
+  color: #1a1a1a;
+  background: $lime;
+}
+
+@mixin stagger-animation($name, $index, $base-delay: 0.06s, $step: 0.06s) {
+  animation: #{$name} 0.4s calc(#{$base-delay} + #{$step} * (#{$index} - 1)) both;
+}

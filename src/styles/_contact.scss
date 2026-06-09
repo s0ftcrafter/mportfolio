@@ -1,0 +1,120 @@
+@use 'variables' as *;
+@use 'mixins' as *;
+
+.contact-form {
+  margin-top: 3rem;
+  padding-top: 2.5rem;
+  border-top: 1px solid var(--border);
+
+  &__title {
+    margin: 0 0 0.5rem;
+    @include heading-style;
+    font-size: 1.25rem;
+  }
+
+  &__desc {
+    margin: 0 0 1.75rem;
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    line-height: 1.55;
+  }
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  &__field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  &__label {
+    font-family: $font-heading;
+    font-size: 0.625rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--ink);
+  }
+
+  input,
+  textarea {
+    width: 100%;
+    padding: 0.875rem 1rem;
+    font-family: $font-body;
+    font-size: 0.9375rem;
+    font-weight: 400;
+    color: var(--text);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    resize: vertical;
+    transition: border-color 0.2s, box-shadow 0.2s;
+
+    &::placeholder {
+      color: var(--text-light);
+    }
+
+    &:focus {
+      outline: none;
+      border-color: var(--ink);
+      box-shadow: 0 0 0 1px var(--ink);
+    }
+
+    &:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+  }
+
+  textarea {
+    min-height: 130px;
+  }
+
+  &__submit {
+    align-self: flex-start;
+    padding: 0.875rem 1.75rem;
+    font-family: $font-heading;
+    font-size: 0.6875rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #1a1a1a;
+    background: $lime;
+    border: none;
+    cursor: pointer;
+    transition: opacity 0.2s, transform 0.2s;
+
+    &:hover:not(:disabled) {
+      opacity: 0.85;
+      transform: translateY(-1px);
+    }
+
+    &:disabled {
+      opacity: 0.6;
+      cursor: wait;
+    }
+  }
+
+  &__message {
+    margin: 0;
+    padding: 0.875rem 1rem;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    border: 1px solid var(--border);
+
+    &--success {
+      color: #1a1a1a;
+      background: $lime;
+      border-color: $lime;
+    }
+
+    &--error {
+      color: var(--card-dark-text);
+      background: var(--card-dark-bg);
+      border-color: var(--card-dark-bg);
+    }
+  }
+}

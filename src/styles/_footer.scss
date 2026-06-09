@@ -1,0 +1,17 @@
+@use 'variables' as *;
+
+.footer {
+  display: flex;
+  justify-content: center;
+  padding: 2rem 1.5rem 2.5rem;
+
+  &__copy {
+    margin: 0;
+    font-family: $font-heading;
+    font-size: 0.625rem;
+    font-weight: 600;
+    color: var(--text-light);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+}

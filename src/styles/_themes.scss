@@ -1,0 +1,82 @@
+:root,
+[data-theme='light'] {
+  --bg: #f8f8f6;
+  --surface: #ffffff;
+  --ink: #1a1a1a;
+  --text: #1a1a1a;
+  --text-muted: #6b6b6b;
+  --text-light: #9a9a9a;
+  --border: #e5e5e5;
+  --shell: #1a1a1a;
+  --hero-line: #d4d4d4;
+  --card-dark-bg: #1a1a1a;
+  --card-dark-text: #ffffff;
+  --card-dark-sub: rgba(255, 255, 255, 0.6);
+  --blog-hero-bg: #1a1a1a;
+  --blog-hero-text: #ffffff;
+  --blog-hero-muted: rgba(255, 255, 255, 0.55);
+  --nav-active-bg: #1a1a1a;
+  --nav-active-text: #d4ff33;
+  --placeholder: #f0f0f0;
+  --shadow-color: rgba(26, 26, 26, 0.08);
+  --lime: #d4ff33;
+  --toggle-bg: #f0f0f0;
+  --toggle-color: #1a1a1a;
+}
+
+[data-theme='dark'] {
+  --bg: #0d0d0d;
+  --surface: #181818;
+  --ink: #f2f2f2;
+  --text: #f2f2f2;
+  --text-muted: #a3a3a3;
+  --text-light: #6b6b6b;
+  --border: #2d2d2d;
+  --shell: #000000;
+  --hero-line: #3a3a3a;
+  --card-dark-bg: #000000;
+  --card-dark-text: #f2f2f2;
+  --card-dark-sub: rgba(255, 255, 255, 0.55);
+  --blog-hero-bg: #000000;
+  --blog-hero-text: #ffffff;
+  --blog-hero-muted: rgba(255, 255, 255, 0.5);
+  --nav-active-bg: #d4ff33;
+  --nav-active-text: #0d0d0d;
+  --placeholder: #222222;
+  --shadow-color: rgba(0, 0, 0, 0.4);
+  --lime: #d4ff33;
+  --toggle-bg: #2a2a2a;
+  --toggle-color: #d4ff33;
+}
+
+html.theme-switching {
+  &::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: var(--lime);
+    opacity: 0;
+    animation: theme-flash 0.5s ease;
+    pointer-events: none;
+    z-index: 9999;
+  }
+}
+
+html.theme-switching,
+html.theme-switching * {
+  transition:
+    background-color 0.45s ease,
+    color 0.35s ease,
+    border-color 0.35s ease,
+    box-shadow 0.35s ease !important;
+}
+
+@keyframes theme-flash {
+  0%,
+  100% {
+    opacity: 0;
+  }
+  40% {
+    opacity: 0.1;
+  }
+}

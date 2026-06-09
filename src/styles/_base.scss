@@ -1,0 +1,72 @@
+@use 'variables' as *;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@700;800;900&display=swap');
+
+:root {
+  font-family: $font-body;
+  line-height: 1.6;
+  font-weight: 400;
+  color: var(--text);
+  background-color: var(--bg);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  overflow-x: hidden;
+  background: var(--bg);
+  color: var(--text);
+}
+
+#root {
+  min-height: 100vh;
+}
+
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg);
+}
+
+main {
+  flex: 1;
+  width: 100%;
+  max-width: $max-width;
+  margin: 0 auto;
+  padding: 0 2rem 3rem;
+}
+
+@media (max-width: 600px) {
+  main {
+    padding: 0 1rem 2rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html.theme-switching::after {
+    animation: none;
+    opacity: 0;
+  }
+
+  html.theme-switching,
+  html.theme-switching * {
+    transition: none !important;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

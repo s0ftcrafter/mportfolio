@@ -1,0 +1,138 @@
+@use 'variables' as *;
+@use 'mixins' as *;
+
+$hero-photo-size: 96px;
+
+.hero {
+  margin-bottom: 2.5rem;
+
+  &__top {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    margin-bottom: 1.75rem;
+  }
+
+  &__photo {
+    flex-shrink: 0;
+    width: $hero-photo-size;
+    height: $hero-photo-size;
+    border-radius: 50%;
+    border: 3px solid $lime;
+    object-fit: cover;
+    object-position: center top;
+    background: var(--shell);
+  }
+
+  &__title {
+    margin: 0;
+    @include heading-style;
+    font-size: clamp(2rem, 6vw, 3rem);
+    line-height: 1.05;
+  }
+
+  &__line {
+    display: block;
+  }
+
+  &__highlight {
+    display: inline;
+    background: $lime;
+    padding: 0.04em 0.18em;
+    box-decoration-break: clone;
+    color: #1a1a1a;
+  }
+
+  &__text {
+    margin: 0;
+    padding-left: 1rem;
+    border-left: 1px solid var(--hero-line);
+    font-size: 0.9375rem;
+    font-weight: 400;
+    color: var(--text-muted);
+    line-height: 1.7;
+    max-width: 52ch;
+
+    strong {
+      font-weight: 600;
+      color: var(--ink);
+    }
+  }
+}
+
+.page-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 3rem;
+}
+
+.page-card {
+  padding: 1.5rem;
+
+  &--dark {
+    background: var(--card-dark-bg);
+    color: var(--card-dark-text);
+
+    h2 {
+      color: var(--card-dark-text);
+    }
+
+    p {
+      color: var(--card-dark-sub);
+    }
+  }
+
+  &--light {
+    background: var(--surface);
+    border: 1px solid var(--border);
+  }
+
+  &__label {
+    @include card-icon;
+    margin-bottom: 1rem;
+  }
+
+  h2 {
+    margin: 0 0 0.5rem;
+    @include heading-style;
+    font-size: 0.9375rem;
+  }
+
+  p {
+    margin: 0;
+    font-size: 0.8125rem;
+    font-weight: 400;
+    color: var(--text-muted);
+    line-height: 1.55;
+  }
+
+  @for $i from 1 through 2 {
+    &--stagger-#{$i} {
+      @include stagger-animation(stagger-in, $i, 0.08s, 0.08s);
+    }
+  }
+}
+
+.page-socials {
+  display: flex;
+  justify-content: center;
+  padding-top: 1rem;
+}
+
+@media (max-width: 520px) {
+  .hero {
+    &__top {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    &__text {
+      max-width: none;
+    }
+  }
+
+  .page-cards {
+    grid-template-columns: 1fr;
+  }
+}

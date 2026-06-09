@@ -1,0 +1,77 @@
+@use 'variables' as *;
+@use 'mixins' as *;
+
+.page {
+  padding-top: 2.5rem;
+
+  &-badge {
+    display: inline-block;
+    margin-bottom: 1.5rem;
+    font-family: $font-heading;
+    font-size: 0.6875rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-muted);
+    padding-bottom: 0.35rem;
+    border-bottom: 2px solid $lime;
+  }
+
+  h1 {
+    margin: 0 0 1rem;
+    @include heading-style;
+    font-size: clamp(2rem, 8vw, 3rem);
+    line-height: 1.05;
+  }
+
+  &-lead {
+    margin: 0 0 2rem;
+    font-size: 0.9375rem;
+    font-weight: 400;
+    color: var(--text-muted);
+    max-width: 62ch;
+    line-height: 1.65;
+
+    strong {
+      font-weight: 600;
+      color: var(--ink);
+    }
+  }
+}
+
+.page--blog {
+  padding-top: 1.25rem;
+
+  .page-hero {
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+    background: var(--blog-hero-bg);
+    padding: 2.5rem calc(50vw - 50% + 2rem) 2rem;
+    margin-bottom: 0;
+
+    .page-badge {
+      color: $lime;
+      border-bottom-color: $lime;
+    }
+
+    h1 {
+      color: var(--blog-hero-text);
+    }
+
+    .page-lead {
+      color: var(--blog-hero-muted);
+      margin-bottom: 0;
+    }
+  }
+
+  .page-body {
+    padding: 0 0 2rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .page--blog .page-hero {
+    padding-left: calc(50vw - 50% + 1rem);
+    padding-right: calc(50vw - 50% + 1rem);
+  }
+}

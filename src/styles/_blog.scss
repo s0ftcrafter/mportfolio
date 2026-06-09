@@ -1,0 +1,60 @@
+@use 'variables' as *;
+@use 'mixins' as *;
+
+.blog-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.blog-item {
+  padding: 1.75rem 0;
+  border-bottom: 1px solid var(--border);
+
+  &:first-child {
+    padding-top: 2rem;
+  }
+
+  &__tag {
+    @include tag;
+    margin-bottom: 0.75rem;
+    border: none;
+
+    &--accent {
+      background: $lime;
+      color: #1a1a1a;
+    }
+
+    &--dark {
+      background: var(--card-dark-bg);
+      color: var(--card-dark-text);
+      border: none;
+    }
+  }
+
+  h2 {
+    margin: 0 0 0.5rem;
+    @include heading-style;
+    font-size: 1.125rem;
+    letter-spacing: 0;
+  }
+
+  &__desc {
+    margin: 0 0 0.5rem;
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    line-height: 1.55;
+  }
+
+  time {
+    font-size: 0.75rem;
+    color: var(--text-light);
+    font-weight: 500;
+  }
+
+  @for $i from 1 through 4 {
+    &--stagger-#{$i} {
+      @include stagger-animation(stagger-in, $i);
+    }
+  }
+}
