@@ -1,5 +1,17 @@
 export const projects = [
   {
+    name: 'Muhamet Store',
+    tags: ['Shop', 'React', 'API'],
+    url: 'https://muhamet-store.netlify.app/home',
+    image: '/projects/muhamet-store.png',
+  },
+  {
+    name: 'ToDoApp',
+    tags: ['App', 'React', 'UI'],
+    url: 'https://muhamet-todoapp.netlify.app/',
+    image: '/projects/todoapp.png',
+  },
+  {
     name: 'Porsche',
     tags: ['Landing', 'HTML', 'CSS', 'JS'],
     url: 'https://s0ftcrafter.github.io/porsche/',
