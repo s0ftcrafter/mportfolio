@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useLanguage } from '../context/LanguageContext'
 
-const CONTACT_EMAIL = import.meta.env.VITE_CONTACT_EMAIL
+const CONTACT_EMAIL = 'muhametmuhameddinov345@gmail.com'
 
 const initialForm = { name: '', email: '', message: '' }
 
