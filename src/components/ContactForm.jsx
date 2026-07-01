@@ -1,12 +1,17 @@
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import { useLanguage } from '../context/LanguageContext'
+import emailjs from '@emailjs/browser'
 
-const CONTACT_EMAIL = 'muhametmuhameddinov345@gmail.com'
+// EmailJS credentials
+const EMAILJS_SERVICE_ID = 'service_zbb21fi'
+const EMAILJS_TEMPLATE_ID = 'template_4hj2nm7'
+const EMAILJS_PUBLIC_KEY = 'cr54xjJ0xTsKUto8q'
 
 const initialForm = { name: '', email: '', message: '' }
 
 function ContactForm() {
   const { t } = useLanguage()
+  const formRef = useRef(null)
   const [form, setForm] = useState(initialForm)
   const [status, setStatus] = useState('idle')
   const [errorMessage, setErrorMessage] = useState('')
@@ -19,7 +24,7 @@ function ContactForm() {
   const handleSubmit = async (e) => {
     e.preventDefault()
 
-    if (!CONTACT_EMAIL) {
+    if (EMAILJS_SERVICE_ID === 'YOUR_SERVICE_ID') {
       setStatus('error')
       setErrorMessage(t('contact.emailNotConfigured'))
       return
@@ -29,33 +34,18 @@ function ContactForm() {
     setErrorMessage('')
 
     try {
-      const response = await fetch(`https://formsubmit.co/ajax/${CONTACT_EMAIL}`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Accept: 'application/json',
-        },
-        body: JSON.stringify({
-          name: form.name,
-          email: form.email,
-          message: form.message,
-          _subject: t('contact.subject'),
-          _template: 'table',
-          _captcha: 'false',
-        }),
-      })
-
-      const data = await response.json()
-
-      if (!response.ok) {
-        throw new Error(data.message || t('contact.sendFailed'))
-      }
+      await emailjs.sendForm(
+        EMAILJS_SERVICE_ID,
+        EMAILJS_TEMPLATE_ID,
+        formRef.current,
+        EMAILJS_PUBLIC_KEY
+      )
 
       setStatus('success')
       setForm(initialForm)
     } catch (err) {
       setStatus('error')
-      setErrorMessage(err.message || t('contact.error'))
+      setErrorMessage(err.text || t('contact.error'))
     }
   }
 
@@ -64,7 +54,7 @@ function ContactForm() {
       <h2 className="contact-form__title">{t('contact.title')}</h2>
       <p className="contact-form__desc">{t('contact.desc')}</p>
 
-      <form className="contact-form__form" onSubmit={handleSubmit} noValidate>
+      <form ref={formRef} className="contact-form__form" onSubmit={handleSubmit} noValidate>
         <label className="contact-form__field">
           <span className="contact-form__label">{t('contact.name')}</span>
           <input
