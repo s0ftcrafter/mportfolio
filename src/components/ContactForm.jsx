@@ -37,6 +37,13 @@ function ContactForm() {
       return
     }
 
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    if (!emailRegex.test(form.email)) {
+      setStatus('error')
+      setErrorMessage(t('contact.invalidEmail'))
+      return
+    }
+
     setStatus('loading')
     setErrorMessage('')
 
