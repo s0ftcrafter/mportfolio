@@ -30,6 +30,13 @@ function ContactForm() {
       return
     }
 
+    const wordCount = form.name.trim().split(/\s+/).length
+    if (wordCount < 3) {
+      setStatus('error')
+      setErrorMessage(t('contact.nameMinWords'))
+      return
+    }
+
     setStatus('loading')
     setErrorMessage('')
 
